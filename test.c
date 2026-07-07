@@ -5,7 +5,7 @@ typedef struct Student{
 }Stu;
 
 int main(){
-    Stu s1 = {202601, "学生张三"};
+    Stu s1 = {202601, "学生赵张三"};
     printf("学号：%d，姓名：%s",s1.id,s1.name);
     return 0;
 }
