@@ -4,12 +4,12 @@
 #include <windows.h>
 #include "graph.h"
 
-
+//初始化邻接表：初始化空图，对应结构图内存初始化
 void InitGraph(ALGraph *G)
 {
-   
+    //清空所有顶点名称内存
     memset(G->roadlist,0,sizeof(G->roadlist));
-    
+    //把所有顶点的边链表头指针全部置空
     for(int i = 0; i < MAX_VERTEX_NUM; i++)
     {
         G->edge_head[i] = NULL;
@@ -72,7 +72,7 @@ int main()
     ShowGraph(&G);     //3.打印查看存储结果
 
     //测试顶点查找功能
-    VertexType target = "食堂";
+    VertexType target = "教学楼";
     int pos = LocateVertex(&G,target);
     if(pos != -1)
     {
