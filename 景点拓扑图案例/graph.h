@@ -28,7 +28,7 @@ int LocateVex(Graph *G, char *name);
 
 void ShowVertex(Graph *G);
 
-void showGraph(Graph *G);
+void ShowGraph(Graph *G);
 
 void DestroyGraph(Graph *G);
 

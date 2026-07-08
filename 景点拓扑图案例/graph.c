@@ -74,9 +74,11 @@ printf("请输入边数：");
         p->weight = w;
         p->next = G->adjlist[startIdx].firstedge;
         G->adjlist[startIdx].firstedge = p;
-    printf("? 景点拓扑图邻接表创建完成！\n");
+    }
+    printf("景点拓扑图邻接表创建完成！\n");
 }
-void ShowVertex(Graph *G){
+
+void ShowVertex(Graph *G) {
     printf("全部景点信息列表：\n");
     printf("顶点序号\t景点名称\t景点简介\n");
     printf("--------------------------------------------------\n");
@@ -89,33 +91,30 @@ void ShowGraph(Graph *G) {
     int matrix[MAX_VERTEX_NUM][MAX_VERTEX_NUM];
     int i, j;
     EdgeNode *p;
-    // Initialize the adjacency matrix
+
     for (i = 0; i < G->numVex; i++) {
         for (j = 0; j < G->numVex; j++) {
-            if (i == j) {
-                matrix[i][j] = 0;
-                void DestroyGraph(Graph *G) {
-                    int i;
-                    EdgeNode *p, *temp;
-                    for (i = 0; i < G->numVex; i++) {
-                        p = G->adjlist[i].firstedge;
-                        while (p != NULL) {
-                            temp = p;
-                            p = p->next;
-                            free(temp);
-                        }
-                        G->adjlist[i].firstedge = NULL;
-                    }
-                    G->numVex = 0;
-                    G->numEdge = 0;
-                }
-    for (i=0;i<G->numVex;i++) {
-        for (int j=0;j<G->numVex;j++) {
-            printf("%8d\t", matrix[i][j]);
+            matrix[i][j] = (i == j) ? 0 : INF;
+        }
+        for (p = G->adjlist[i].firstedge; p != NULL; p = p->next) {
+            matrix[i][p->adjvex] = p->weight;
+        }
+    }
+
+    printf("邻接矩阵表示：\n");
+    for (i = 0; i < G->numVex; i++) {
+        for (j = 0; j < G->numVex; j++) {
+            if (matrix[i][j] == INF) {
+                printf(" INF ");
+            } else {
+                printf("%4d ", matrix[i][j]);
+            }
         }
         printf("\n");
     }
-    void DestroyGraph(Graph *G) {
+}
+
+void DestroyGraph(Graph *G) {
     int i;
     EdgeNode *p, *temp;
     for (i = 0; i < G->numVex; i++) {
