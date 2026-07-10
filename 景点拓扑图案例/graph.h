@@ -5,6 +5,9 @@
 #define MAX_VEX 100   // 最大景点顶点数量
 #define INF 32767     // 无边连通 标准无穷大数值
 
+#define VISIT_MAX MAX_VEX // 访问标记数组最大长度
+#define PATH_MAX MAX_VEX  // 路径数组最大长度
+
 // 1.边节点结构体：存储邻接点下标、边权值、下一条边指针
 typedef struct EdgeNode{
     int adjvex;          // 邻接顶点数组下标
